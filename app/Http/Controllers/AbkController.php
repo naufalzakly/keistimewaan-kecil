@@ -9,26 +9,18 @@ class AbkController extends Controller
 {
     public function index(Request $request)
     {
-        $abks[] = $request->input("gejala[]");
-        dd($abks);
-        $abk = Gejala::all();
-        
-        // return view('gejala.index', compact('gejala'));
+        $gejala_id = $request->input("gejala");
+        if (!empty($gejala_id)) {
+            $abk = Gejala::whereIn('id', $gejala_id)->get();
+        }else {
+            $abk = null;
+        }
+
         return view('abk.index')->with([
             'abk' => $abk
         ]);
-        
-    }
-    public function store(Request $request)
-    {
-        $abks[] = $request->input("gejala[]");
-        dd($abks);
-        
-        // return view('gejala.index', compact('gejala'));
 
-        return redirect()->route('abk.index');
-        
     }
 
-    
+
 }

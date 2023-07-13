@@ -41,25 +41,28 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
                             <th>Gejala</th>
                             <th>Nilai Bobot</th>
                             <th>Total Bobot</th>
                             <th>Hasil</th>
                         </tr>
                     </thead>
+                    @if ($abk->isEmpty())
+                    <tbody class="section"></tbody>
+                    @else
                     <tbody class="section">
-                        
-                            <tr>
-                                <td>No</td>
-                                <td>Anton</td>
-                                <td>Gejala</td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>4</td>
-                                
-                            </tr>
+                        @foreach ($abk as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->bobot }}</td>
+                            <td>2</td>
+                            <td>4</td>
+                        </tr>
+                    @endforeach
                     </tbody>
+                    @endif
+
                 </table>
             </div>
         </div>
@@ -78,5 +81,5 @@
         });
     </script>
 @endsection
- 
+
 

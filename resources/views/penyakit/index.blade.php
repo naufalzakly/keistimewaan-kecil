@@ -14,8 +14,7 @@
         <div id="services">
 
             <div > <h3 class="first">Gejala dan Kategori Anak Berkebutuhan Khusus</h3>
-                <form method="post" action="{{ route('abk.index') }}" >
-                    @csrf
+                <form action="{{ route('abk.index') }}" method="GET">
                     <table id="exampleTable">
                         <thead>
                             <tr>
@@ -34,7 +33,6 @@
                                     <td>{{ $item->bobot }}</td>
                                     <td>{{ $item->abk->pluck('name')->implode(',') }}</td>
                                     <td class="d-flex">
-                                        
                                         <input type="checkbox" name="gejala[]" value="{{$item->id}}">
                                     </td>
                                 </tr>
@@ -58,4 +56,4 @@
         });
     </script>
 @endsection
- 
+
