@@ -14,14 +14,14 @@
         <div id="services">
 
             <div > <h3 class="first">Gejala dan Kategori Anak Berkebutuhan Khusus</h3>
-                <form action="{{ route('abk.index') }}" method="GET">
+                <form method="GET" action="{{ route('abk.index') }}" >
                     <table id="exampleTable">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Gejala</th>
                                 <th>Bobot</th>
-                                <th>Katgori</th>
+                                
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -31,8 +31,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->bobot }}</td>
-                                    <td>{{ $item->abk->pluck('name')->implode(',') }}</td>
                                     <td class="d-flex">
+                                        
                                         <input type="checkbox" name="gejala[]" value="{{$item->id}}">
                                     </td>
                                 </tr>
@@ -40,7 +40,7 @@
 
                         </tbody>
                     </table>
-                    <input type="submit" value="Submit">
+                    <button class="d-grid gap-2 col-3 mx-auto btn btn-primary me-md-2" type="submit" value="Submit">Simpan</button>
                 </form>
             </div>
         </div>
@@ -56,4 +56,4 @@
         });
     </script>
 @endsection
-
+ 
