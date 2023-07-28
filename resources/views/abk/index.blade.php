@@ -51,6 +51,7 @@
                                 <th>Nilai Pembilang</th>
                                 <th>Nilai Penyebut</th>
                                 <th>Total</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,6 +87,13 @@
                                 @endforeach
                                 <td rowspan="10" >{{ $penyebut }}</td>
                                 <td rowspan="10" >{{ $total }}</td>
+                                @if ($total == null )
+                                    <td rowspan="10" > Anak Anda Tidak Memiliki Gejala Autis</td>
+                                @elseif ($total >= 1 )
+                                    <td rowspan="10" >Anak Anda Kategori Autis</td>
+                                @elseif ($total < 1 )
+                                    <td rowspan="10" >Anak Anda bukan Kategori Autis</td>
+                                @endif
                             </tr>
 
                             <tr>
@@ -146,6 +154,13 @@
                                 @endforeach
                                 <td rowspan="10" >{{ $penyebut }}</td>
                                 <td rowspan="10" >{{ $total }}</td>
+                                @if ($total == null )
+                                    <td rowspan="10" > Anak Anda Tidak Memiliki Gejala Hiperaktif</td>
+                                @elseif ($total >= 1 )
+                                    <td rowspan="10" >Anak Anda Kategori Hiperaktif</td>
+                                @elseif ($total < 1 )
+                                    <td rowspan="10" >Anak Anda bukan Kategori Hiperaktif</td>
+                                @endif
                             </tr>
                             <tr>
                                 <td>Ekspresi kurang hidup</td>
@@ -208,6 +223,13 @@
                                 
                                 <td rowspan="10" >{{ $penyebut }}</td>
                                 <td rowspan="10">{{ $total }}</td>
+                                @if ($total == null )
+                                    <td rowspan="10" > Anak Anda Tidak Memiliki Gejala Gifted</td>
+                                @elseif ($total >= 1 )
+                                    <td rowspan="10" >Anak Anda Kategori Gifted</td>
+                                @elseif ($total < 1 )
+                                    <td rowspan="10" >Anak Anda bukan Kategori Gifted</td>
+                                @endif
                             </tr>
                             <tr>
                                 <td>Ekspresi muka bagus pada satu objek</td>
@@ -258,5 +280,4 @@
         });
     </script>
 @endsection
-
 

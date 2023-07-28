@@ -56,7 +56,7 @@ img {
 	min-height: 1170px;
 	margin: 0 auto;
 	overflow: hidden;
-	width: 960px;
+	width: 1200px;
 }
 #content div div {
 	background: none;
@@ -64,7 +64,7 @@ img {
 	margin: 500px 0 0;
 	min-height: 0;
 	padding-right: 10px;
-	width: 460px;
+	width: 1200px;
 }
 #content div div h1, #content div div h2 {
 	color: #382d00;
@@ -89,7 +89,7 @@ div.content {
 }
 div.content div {
 	margin: 0 auto;
-	width: 960px;
+	width: 1200px;
 }
 div.content div div {
 	padding-top: 10px;
@@ -104,7 +104,7 @@ div.content div div#services {
 div.content div div div#sidebar {
 	float: left;
 	padding-top: 0;
-	width: 320px;
+	width: 1200px;
 }
 div.content div div div#sidebar h3 {
 	color: #9BAF58;

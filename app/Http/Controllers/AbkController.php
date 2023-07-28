@@ -11,7 +11,7 @@ class AbkController extends Controller
     public function index(Request $request)
     {
         $gejala_id = $request->input("gejala");
-        
+        $total_penyebut =Gejala::all();
 
         if (!empty($gejala_id)) {
             $abkk = Gejala::whereIn('id', $gejala_id)->get();
@@ -21,9 +21,9 @@ class AbkController extends Controller
             $abkk = null;
             $gejala_dipilih = null;
             $total_pembilang = null;
-            
+            $total_penyebut = null;
         }
-        $total_penyebut =Gejala::all();
+        
         return view('abk.index')->with([
             'abkk' => $abkk, 
             'gejala_dipilih' => $gejala_dipilih, 
