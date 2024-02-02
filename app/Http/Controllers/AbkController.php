@@ -4,35 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Abk;
 use App\Models\Gejala;
+use App\Models\Analisa;
+
 use Illuminate\Http\Request;
 
 class AbkController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $gejala_id = $request->input("gejala");
-        $total_penyebut =Gejala::all();
-
-        if (!empty($gejala_id)) {
-            $abkk = Gejala::whereIn('id', $gejala_id)->get();
-            $gejala_dipilih = Gejala::whereIn('id', $gejala_id)->get();;
-            $total_pembilang =Gejala::whereIn('id', $gejala_id)->sum('bobot');
-        }else {
-            $abkk = null;
-            $gejala_dipilih = null;
-            $total_pembilang = null;
-            $total_penyebut = null;
-        }
-        
-        return view('abk.index')->with([
-            'abkk' => $abkk, 
-            'gejala_dipilih' => $gejala_dipilih, 
-            'total_pembilang' => $total_pembilang,
-            'total_penyebut' => $total_penyebut,
-            // 'nilai_pembilang' => $nilai_pembilang,
-        ]);
-
+        return view('abk.index');
     }
 
-
 }
+   

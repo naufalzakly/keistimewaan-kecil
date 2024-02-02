@@ -23,7 +23,7 @@
 </head>
 <body>
     <div >
-        @include('includes.header')
+        @include('admin.includes.header')
         <div>
             <main>
                 @yield('content')

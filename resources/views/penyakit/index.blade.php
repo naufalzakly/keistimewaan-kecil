@@ -13,13 +13,13 @@
         <div> <img src="images/baby.jpg" alt=""> </div>
         <div id="services">
             <div> <h3 class="first">Gejala dan Kategori Anak Berkebutuhan Khusus</h3>
-                <form method="GET" action="{{ route('abk.index') }}">
+                <form method="POST" action="{{ route('abk.index') }}">
+                @csrf
                     <table id="exampleTable">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Gejala</th>
-                                <th>Bobot</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -28,9 +28,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->bobot }}</td>
                                     <td class="d-flex">
-                                        <input type="checkbox" name="gejala[]" value="{{ $item->id }}">
+                                        <input type="checkbox" name="gejala[{{ $item->id }}]" value="{{ $item->bobot }}">
                                     </td>
                                 </tr>
                             @endforeach
@@ -48,59 +47,75 @@
 @include('includes.footer')
 @endsection
 
+
 @section('js')
     <div id="gejalaData" data-json="{{ $gejala->toJson() }}" style="display: none;"></div>
-
     <script>
         $(document).ready(function() {
             $('#exampleTable').DataTable();
         });
-
         document.addEventListener('DOMContentLoaded', function() {
             const gejalaData = JSON.parse(document.getElementById('gejalaData').getAttribute('data-json'));
-
-            const traces_autis = [];
-            const traces_hiperaktif = [];
-            const traces_gifted = [];
-            const autisName = 'Autis';
-
+            const x_autis = [];
+            const y_autis = [];
+            const x_hiperaktif = [];
+            const y_hiperaktif = [];
+            const x_gifted = [];
+            const y_gifted = [];
             gejalaData.forEach(item => {
-                
                 if (item.categori === 'Autis') {
-                    traces_autis.push({
-                        x: [item.id], // Text label for x-axis
-                        y: [item.bobot], // Numeric value for y-axis
-                        mode: 'markers',
-                        type: 'scatter',
-                        name: autisName
-                        
-                    });
-                } else if (item.categori === 'Hiperaktif') {
-                    traces_hiperaktif.push({
-                        x: [item.id], // Text label for x-axis
-                        y: [item.bobot], // Numeric value for y-axis
-                        mode: 'markers',
-                        type: 'scatter',
-                        name: "Hiperaktif"
-                    });
+                    x_autis.push(item.id);
+                    y_autis.push(item.bobot);
+                } else if (item.categori === 'Hiperaktif' ) {
+                    x_hiperaktif.push(item.id);
+                    y_hiperaktif.push(item.bobot);
+
                 } else if (item.categori === 'Gifted') {
-                    traces_gifted.push({
-                        x: [item.id], // Text label for x-axis
-                        y: [item.bobot], // Numeric value for y-axis
-                        mode: 'markers',
-                        type: 'scatter',
-                        name: "Gifted"
-                    });
+                    x_gifted.push(item.id);
+                    y_gifted.push(item.bobot);
                 }
             });
+            const traces_autis = {
+                x: x_autis,
+                y: y_autis,
+                mode: 'lines+markers',
+                type: 'scatter',
+                name: 'Autis',
+            };
 
-            const data = [...traces_autis, ...traces_hiperaktif, ...traces_gifted];
+            const traces_hiperaktif = {
+                x: x_hiperaktif,
+                y: y_hiperaktif,
+                mode: 'lines+markers',
+                type: 'scatter',
+                name: 'Hiperaktif',
+            };
+
+            const traces_gifted = {
+                x: x_gifted,
+                y: y_gifted,
+                mode: 'lines+markers',
+                type: 'scatter',
+                name: 'Gifted',
+            };
+            const data = [traces_autis, traces_hiperaktif, traces_gifted];
 
             const layout = {
                 title: 'Scatterplot Matrix',
                 showlegend: true,
+                xaxis: {title: 'Data'},
+                yaxis: {title: 'Bobot'},
                 height: 700,
                 width: 1000,
+                legend: {
+                    y: 0.5,
+                    yref: 'paper',
+                    font: {
+                        family: 'Arial, sans-serif',
+                        size: 20,
+                        color: 'grey',
+                    }
+                },
             };
 
             Plotly.newPlot('scatterplotMatrix', data, layout);
