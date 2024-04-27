@@ -1,4 +1,3 @@
-# keistimewaan-kecil
 # Getting started
 
 ## Installation
@@ -18,3 +17,19 @@ Install all the dependencies using composer
 Copy the example env file and make the required configuration changes in the .env file
 
     cp .env.example .env
+
+input DB_DATABASE pada .env
+
+    DB_DATABASE = Keistimewaan-keciil 
+
+Generate a new application key
+
+    php artisan key:generate
+    
+Run the database migrations 
+
+    php artisan migrate
+
+Start the local development server
+
+    php artisan serve
